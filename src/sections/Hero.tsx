@@ -1,16 +1,41 @@
+import { useEffect, useState } from 'react'
 import heroPhoto from '../assets/my_photo.jpeg'
 import { stats } from '../data/stats'
 
 function Hero() {
+  const [text, setText] = useState('')
+  const fullText = "I'm Breno, Full-stack Software Developer"
+  const splitIndex = fullText.indexOf(',')
+
+  useEffect(() => {
+    let index = 0
+    const interval = setInterval(() => {
+      if (index <= fullText.length) {
+        setText(fullText.slice(0, index))
+        index++
+      } else {
+        clearInterval(interval)
+      }
+    }, 120)
+    return () => clearInterval(interval)
+  }, [])
+
+  const typedPart = text
+  const beforeComma = typedPart.slice(0, splitIndex + 1)
+  const afterComma = typedPart.slice(splitIndex + 1)
+
   return (
     <section
       id="home"
-      className="reveal grid items-center gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
+      className="reveal grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
     >
       <div className="flex flex-col gap-6">
         <h1 className="font-display text-[clamp(2.8rem,4vw,4.8rem)] leading-[1.05]">
-          I’m Breno,
-          <span className="block text-accent-strong">Full-stack Software Developer</span>
+          <span className="min-h-[1.2em]">
+            {beforeComma}
+            <span className="text-accent-strong">{afterComma}</span>
+            <span className="typing-cursor">|</span>
+          </span>
         </h1>
         <p className="max-w-xl text-lg text-muted">
           I use my knowledge in JavaScript, TypeScript, Node.js and React to build web applications
@@ -98,12 +123,12 @@ function Hero() {
         </div>
       </div>
       <div className="relative">
-        <div className="absolute -right-8 -top-8 hidden h-full w-full rounded-[40px] border border-line/40 md:block" />
-        <div className="relative overflow-hidden rounded-[40px] border border-line bg-accent-strong p-6 shadow-soft">
+        <div className="absolute -right-4 -top-4 h-full w-full rounded-[40px] border border-line/40" />
+        <div className="relative overflow-hidden rounded-[40px] border border-line bg-accent-strong p-4 shadow-soft">
           <img
             src={heroPhoto}
             alt="Breno Lopes Mafra"
-            className="h-[420px] w-full rounded-[32px] object-cover object-top"
+            className="h-[320px] md:h-[420px] w-full rounded-[32px] object-cover object-top"
           />
         </div>
       </div>
@@ -112,3 +137,4 @@ function Hero() {
 }
 
 export default Hero
+

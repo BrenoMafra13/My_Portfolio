@@ -18,7 +18,7 @@ export default {
         glass: 'var(--glass)',
       },
       boxShadow: {
-        soft: '0 20px 40px rgba(4, 10, 8, 0.16)',
+        soft: '0 20px 40px rgba(6, 182, 212, 0.15)',
       },
     },
   },
