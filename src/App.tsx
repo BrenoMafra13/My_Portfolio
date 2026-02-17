@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Header from './components/Header'
 import About from './sections/About'
 import Contact from './sections/Contact'
+import Education from './sections/Education'
 import Hero from './sections/Hero'
 import Projects from './sections/Projects'
 import Skills from './sections/Skills'
@@ -36,11 +37,22 @@ function App() {
 
   return (
     <div className="min-h-screen bg-base text-text">
+      {/* Animated Background Elements */}
+      <div className="bg-gradient-animated" />
+      <div className="bg-grid" />
+      <div className="bg-noise" />
+      <div className="bg-stars" />
+      <div className="bg-scanlines" />
+      <div className="orb orb-1" />
+      <div className="orb orb-2" />
+      <div className="orb orb-3" />
+      
       <Header />
 
       <main className="flex flex-col gap-24 px-[6vw] pb-24 pt-16">
         <Hero />
         <About />
+        <Education />
         <Skills />
         <Projects />
         <Contact />
