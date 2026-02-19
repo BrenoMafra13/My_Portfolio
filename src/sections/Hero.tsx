@@ -26,7 +26,7 @@ function Hero() {
 
   return (
     <section
-      id="home"
+      id="hero"
       className="reveal grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
     >
       <div className="flex flex-col gap-6">
@@ -43,28 +43,9 @@ function Hero() {
         </p>
         <div className="flex flex-wrap gap-4">
           <a
-            href="#projects"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent-strong px-6 py-3 text-sm font-semibold text-button-text transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(20,40,30,0.25)]"
-          >
-            <svg
-              aria-hidden="true"
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-              <rect x="14" y="14" width="7" height="7" rx="1" />
-            </svg>
-            Projects
-          </a>
-          <a
             href="https://www.linkedin.com/in/breno-lopes-mafra/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0A66C2] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(10,102,194,0.35)]"
           >
             <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -74,6 +55,8 @@ function Hero() {
           </a>
           <a
             href="https://github.com/BrenoMafra13"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/80 bg-[#0D1117] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(13,17,23,0.35)]"
           >
             <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -83,6 +66,8 @@ function Hero() {
           </a>
           <a
             href="https://www.youtube.com/@brenolopesmafra4519"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF0000] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(255,0,0,0.35)]"
           >
             <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -92,7 +77,7 @@ function Hero() {
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-line px-6 py-3 text-sm font-semibold text-text transition hover:-translate-y-0.5 hover:border-accent"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 bg-white/5 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-text transition hover:-translate-y-0.5 hover:border-accent"
           >
             <svg
               aria-hidden="true"
@@ -114,7 +99,7 @@ function Hero() {
           {stats.map((item) => (
             <div
               key={item.label}
-              className="rounded-2xl border border-line bg-surface px-5 py-4 text-sm shadow-soft"
+              className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-5 py-4 text-sm shadow-soft"
             >
               <p className="text-xl font-semibold text-text">{item.value}</p>
               <p className="text-muted">{item.label}</p>
@@ -123,8 +108,8 @@ function Hero() {
         </div>
       </div>
       <div className="relative">
-        <div className="absolute -right-4 -top-4 h-full w-full rounded-[40px] border border-line/40" />
-        <div className="relative overflow-hidden rounded-[40px] border border-line bg-accent-strong p-4 shadow-soft">
+        <div className="absolute -right-4 -top-4 h-full w-full rounded-[40px] border border-blue-500" />
+        <div className="relative overflow-hidden rounded-[40px] border border-blue-500 bg-white/5 backdrop-blur-xl p-4 shadow-soft">
           <img
             src={heroPhoto}
             alt="Breno Lopes Mafra"

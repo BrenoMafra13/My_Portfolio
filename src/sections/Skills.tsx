@@ -128,7 +128,7 @@ function Skills() {
           return (
             <article
               key={skill.name}
-              className="dev-card group relative overflow-hidden rounded-2xl border border-line/40 bg-[#0a0f0d] p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+              className="dev-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -145,7 +145,7 @@ function Skills() {
                   <div className="flex items-center gap-4">
                     <div className="relative">
                       <div className="absolute inset-0 bg-accent-strong/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-surface to-[#1a2420] border border-line/50 group-hover:border-accent-strong/30 transition-colors duration-300">
+                      <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:border-accent-strong/30 transition-colors duration-300">
                         <Icon className={`h-7 w-7 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
                       </div>
                     </div>
@@ -156,14 +156,14 @@ function Skills() {
                   </div>
                 </div>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-line/50 to-transparent mb-4" />
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4" />
 
                 <p className="text-sm text-muted group-hover:text-muted/80 transition-colors duration-300 font-mono text-xs">
                   <span className="text-accent-strong">{">"}</span> {skill.detail}
                 </p>
 
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 rounded-md bg-surface px-2 py-1 text-xs font-mono text-accent-strong border border-line/50">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-1 text-xs font-mono text-accent-strong border border-white/10">
                     {skill.tag}
                   </span>
                 </div>

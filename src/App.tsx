@@ -1,11 +1,14 @@
 import { useEffect } from 'react'
 import Header from './components/Header'
 import About from './sections/About'
+import CertificatesAndAwards from './sections/CertificatesAndAwards'
 import Contact from './sections/Contact'
 import Education from './sections/Education'
 import Hero from './sections/Hero'
 import Projects from './sections/Projects'
+import Recommendations from './sections/Recommendations'
 import Skills from './sections/Skills'
+import WorkExperience from './sections/WorkExperience'
 
 function App() {
   useEffect(() => {
@@ -22,6 +25,8 @@ function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible')
+          } else {
+            entry.target.classList.remove('reveal-visible')
           }
         })
       },
@@ -49,12 +54,15 @@ function App() {
       
       <Header />
 
-      <main className="flex flex-col gap-24 px-[6vw] pb-24 pt-16">
+<main className="flex flex-col gap-8 px-[6vw] pb-24 pt-16">
         <Hero />
         <About />
         <Education />
+        <CertificatesAndAwards />
         <Skills />
         <Projects />
+        <WorkExperience />
+        <Recommendations />
         <Contact />
       </main>
     </div>

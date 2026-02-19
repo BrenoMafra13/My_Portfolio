@@ -12,6 +12,7 @@ type Education = {
   logo: string
   description: string
   status: string
+  link: string
   details: {
     courses: string[]
     skills: string[]
@@ -31,6 +32,7 @@ function Education() {
       logo: gbcLogo,
       description: 'Computer Programming and Analysis',
       status: 'Completed (GPA: 3.65)',
+      link: 'https://www.georgebrown.ca/programs/computer-programming-and-analysis-program-t177',
       details: {
         courses: [
           'Object-Oriented Programming (Java, C#, Python)',
@@ -69,6 +71,7 @@ function Education() {
       logo: pucprLogo,
       description: 'Mechatronic Engineering',
       status: 'Coursework',
+      link: 'https://www.pucpr.br/cursos-graduacao/engenharia-mecatronica/',
       details: {
         courses: [
           'Grade: 4 out of 10 periods attended, suspension due to change of institution',
@@ -159,13 +162,15 @@ function Education() {
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.2 }}
                       viewport={{ once: true }}
                     >
-                      {edu.institution}
-                      {edu.institutionLine2 && (
-                        <>
-                          <br />
-                          {edu.institutionLine2}
-                        </>
-                      )}
+                      <a href={edu.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent-strong transition-colors duration-300">
+                        {edu.institution}
+                        {edu.institutionLine2 && (
+                          <>
+                            <br />
+                            {edu.institutionLine2}
+                          </>
+                        )}
+                      </a>
                     </motion.h3>
                     <motion.div
                       className="mb-2"
@@ -174,7 +179,7 @@ function Education() {
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
                       viewport={{ once: true }}
                     >
-                      <span className="text-lg md:text-xl lg:text-2xl font-mono text-muted/60 uppercase tracking-widest group-hover:text-muted/80 transition-colors duration-300">
+                      <span className="text-lg md:text-xl lg:text-2xl font-mono uppercase tracking-widest group-hover:text-muted/80 transition-colors duration-300" style={{color: 'white'}}>
                         {edu.degree}
                       </span>
                     </motion.div>
@@ -185,16 +190,17 @@ function Education() {
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                       viewport={{ once: true }}
                     >
-                      <span className="text-base md:text-lg lg:text-xl font-mono text-muted/50 group-hover:text-muted/70 transition-colors duration-300">
+                      <span className="text-base md:text-lg lg:text-xl font-mono group-hover:text-muted/70 transition-colors duration-300" style={{color: 'white'}}>
                         {edu.location}
                       </span>
                     </motion.div>
                     <motion.p
-                      className="font-mono text-base md:text-lg lg:text-xl text-muted/70 max-w-lg mb-6 group-hover:text-muted/90 transition-colors duration-300"
+                      className="font-mono text-base md:text-lg lg:text-xl max-w-lg mb-6 group-hover:text-muted/90 transition-colors duration-300"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
                       viewport={{ once: true }}
+                      style={{color: 'white'}}
                     >
                       {edu.description}
                     </motion.p>
@@ -206,7 +212,7 @@ function Education() {
                       viewport={{ once: true }}
                     >
                       <div className="w-3 h-3 rounded-full bg-accent-strong animate-pulse" />
-                      <span className="text-base md:text-lg font-mono text-muted/40 group-hover:text-muted/60 transition-colors duration-300">
+                      <span className="text-base md:text-lg font-mono group-hover:text-muted/60 transition-colors duration-300" style={{color: 'white'}}>
                         {edu.status}
                       </span>
                     </motion.div>
@@ -246,7 +252,7 @@ function Education() {
                     exit={{ opacity: 0, height: 0, y: -20 }}
                     className="overflow-hidden z-20"
                   >
-                    <div className="p-6 rounded-2xl bg-gradient-to-br from-accent-strong/5 via-accent/5 to-transparent border border-accent-strong/10 backdrop-blur-sm">
+                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
                       <div className="mb-6">
                         <h4 className="text-sm font-mono uppercase tracking-widest text-accent-strong mb-3">
                           {index === 0 ? 'Coursework & Activities' : 'Courses Completed'}
@@ -258,7 +264,8 @@ function Education() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: courseIndex * 0.05 }}
-                              className="text-sm md:text-base text-muted/70 font-mono flex items-start gap-2"
+                              className="text-sm md:text-base font-mono flex items-start gap-2"
+                              style={{color: 'white'}}
                             >
                               <span className="text-accent-strong mt-1">▹</span>
                               {course}
@@ -278,7 +285,7 @@ function Education() {
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: skillIndex * 0.03 }}
-                              className="px-3 py-1.5 text-xs md:text-sm font-mono rounded-full bg-accent-strong/10 text-accent-strong border border-accent-strong/20"
+                              className="px-3 py-1.5 text-xs md:text-sm font-mono rounded-full bg-white/5 text-accent-strong border border-white/10"
                             >
                               {skill}
                             </motion.span>
