@@ -8,6 +8,7 @@ type Certificate = {
   credentialUrl: string
   skills: string[]
   logoType?: 'harvard' | 'certificate' | 'java'
+  expires?: string
 }
 
 type Award = {
