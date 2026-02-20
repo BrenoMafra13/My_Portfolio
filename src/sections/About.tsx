@@ -1,4 +1,11 @@
+import { useState } from 'react';
+
 function About() {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const openSheet = () => setIsSheetOpen(true);
+  const closeSheet = () => setIsSheetOpen(false);
+
   return (
     <section id="about" className="reveal scroll-mt-28">
       <div className="flex flex-col gap-4">
@@ -23,79 +30,70 @@ function About() {
           <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted">Breno Lopes Mafra</p>
         </div>
         <div className="space-y-5 text-base leading-relaxed text-muted md:text-lg">
-          <p className="text-sm uppercase tracking-[0.28em] text-accent-strong">Career goal</p>
-          <p className="indent-12 text-text/90">
-            I communicate with clarity and intent, translating complex problems into shared
-            understanding and actionable plans. My motivation comes from building software that
-            makes people’s work simpler and more confident, and I hold myself accountable to ship
-            experiences that are thoughtful, reliable, and aligned with real user needs. My role is
-            to bring structure, critical thinking, and calm execution to every stage of delivery;
-            past projects taught me to value feedback loops and disciplined iteration, and my
-            ambition is to grow into a leadership role where I can mentor teams and drive product
-            outcomes with lasting impact.
-          </p>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <article
-            className="reveal group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-7 shadow-soft transition hover:-translate-y-1"
-            style={{ transitionDelay: '120ms' }}
-          >
-            <div className="absolute inset-x-0 top-0 h-1 bg-accent-strong/80" />
-            <p className="text-sm uppercase tracking-[0.28em] text-accent-strong">Resume</p>
-            <h3 className="mt-2 font-display text-2xl text-text">View my Resume:</h3>
-            <p className="mt-3 text-sm text-muted">
-              Download or view the full resume whit my experience and skills.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href="/Breno_Software_Developer_Resume.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-accent-strong px-5 py-2.5 text-sm font-semibold text-button-text transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(20,40,30,0.25)]"
+          <div className="relative group">
+            <img
+              src="/cardResume.png"
+              alt="Resume Card"
+              className="rounded-3xl shadow-lg w-[110%] transition-transform transform group-hover:scale-105 group-hover:shadow-xl"
+            />
+            <div className="absolute inset-x-0 bottom-8 flex justify-end gap-4 pr-8">
+              <button
+                onClick={() => setIsSheetOpen(true)}
+                className="px-4 py-1.5 bg-accent-strong text-white font-semibold rounded-full shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
               >
                 View PDF
-              </a>
+              </button>
               <a
                 href="/Breno_Software_Developer_Resume.pdf"
                 download
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-5 py-2.5 text-sm font-semibold text-text transition hover:-translate-y-0.5 hover:border-accent"
+                className="px-4 py-1.5 bg-white text-accent-strong font-semibold border border-accent-strong rounded-full shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
               >
-                Download
+                Download Resume
               </a>
             </div>
-          </article>
-          <article
-            className="reveal group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-7 shadow-soft transition hover:-translate-y-1"
-            style={{ transitionDelay: '220ms' }}
-          >
-            <div className="absolute inset-x-0 top-0 h-1 bg-accent-strong/80" />
-            <p className="text-sm uppercase tracking-[0.28em] text-accent-strong">Cover Letter</p>
-            <h3 className="mt-2 font-display text-2xl text-text">Know more about me:</h3>
-            <p className="mt-3 text-sm text-muted">
-              Download or view the full cover letter whit information about me.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href="/Breno_Cover_Letter.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-accent-strong px-5 py-2.5 text-sm font-semibold text-button-text transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(20,40,30,0.25)]"
-              >
-                View PDF
-              </a>
-              <a
-                href="/Breno_Cover_Letter.pdf"
-                download
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-5 py-2.5 text-sm font-semibold text-text transition hover:-translate-y-0.5 hover:border-accent"
-              >
-                Download
-              </a>
-            </div>
-          </article>
+          </div>
+          <div className="relative group">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/4unG-TNHpLI"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-3xl shadow-lg w-[100%] h-full transition-transform transform group-hover:scale-105 group-hover:shadow-xl"
+            ></iframe>
+          </div>
         </div>
+
+        {isSheetOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50"
+            onClick={closeSheet}
+          >
+            <div
+              className="relative bg-white p-6 rounded-t-lg shadow-lg w-full max-w-4xl h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the sheet
+            >
+              <button
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                onClick={closeSheet}
+              >
+                &times;
+              </button>
+              <iframe
+                src="/Breno_Software_Developer_Resume.pdf"
+                className="w-full h-full"
+                title="Resume"
+              ></iframe>
+            </div>
+          </div>
+        )}
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;
