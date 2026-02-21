@@ -58,10 +58,10 @@ function App() {
         <Hero />
         <About />
         <Education />
-        <CertificatesAndAwards />
+        <WorkExperience />
         <Skills />
         <Projects />
-        <WorkExperience />
+        <CertificatesAndAwards />
         <Recommendations />
         <Contact />
       </main>

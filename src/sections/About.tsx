@@ -2,9 +2,12 @@ import { useState } from 'react';
 
 function About() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [selectedResume, setSelectedResume] = useState(false);
 
   const openSheet = () => setIsSheetOpen(true);
   const closeSheet = () => setIsSheetOpen(false);
+  const openResumeModal = () => setSelectedResume(true);
+  const closeResumeModal = () => setSelectedResume(false);
 
   return (
     <section id="about" className="reveal scroll-mt-28">
@@ -40,7 +43,7 @@ function About() {
             />
             <div className="absolute inset-x-0 bottom-8 flex justify-end gap-4 pr-8">
               <button
-                onClick={() => setIsSheetOpen(true)}
+                onClick={openResumeModal}
                 className="px-4 py-1.5 bg-accent-strong text-white font-semibold rounded-full shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
               >
                 View PDF
@@ -70,11 +73,11 @@ function About() {
 
         {isSheetOpen && (
           <div
-            className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
             onClick={closeSheet}
           >
             <div
-              className="relative bg-white p-6 rounded-t-lg shadow-lg w-full max-w-4xl h-[80vh] overflow-y-auto"
+              className="relative bg-white p-6 rounded-lg shadow-lg w-[90%] h-[90%] max-w-4xl max-h-[90vh] overflow-hidden"
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the sheet
             >
               <button
@@ -88,6 +91,52 @@ function About() {
                 className="w-full h-full"
                 title="Resume"
               ></iframe>
+            </div>
+          </div>
+        )}
+
+        {/* Resume Modal */}
+        {selectedResume && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={closeResumeModal}
+          >
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+            {/* Modal Card */}
+            <div
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/20 bg-[#0a0f0d]/95 backdrop-blur-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeResumeModal}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              >
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Modal Content */}
+              <div className="p-8 md:p-12">
+                <iframe
+                  src="/Breno_Software_Developer_Resume.pdf"
+                  className="w-full h-[80vh]"
+                  frameBorder="0"
+                ></iframe>
+              </div>
             </div>
           </div>
         )}
