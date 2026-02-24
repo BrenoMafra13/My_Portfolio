@@ -10,6 +10,22 @@
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10,
     "startCommand": "npm run preview -- --host --port 4173"
-  }
+  },
+  "services": [
+    {
+      "name": "portfolio",
+      "build": {
+        "context": ".",
+        "dockerfile": "Dockerfile"
+      }
+    },
+    {
+      "name": "portfolio_v2",
+      "build": {
+        "context": "./portfolio_v2",
+        "dockerfile": "Dockerfile"
+      }
+    }
+  ]
 }
 
