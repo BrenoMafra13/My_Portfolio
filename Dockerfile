@@ -16,11 +16,6 @@ COPY . .
 # Build the project
 RUN npm run build
 
-# Add build step for portfolio_v2
-COPY portfolio_v2 /app/portfolio_v2
-WORKDIR /app/portfolio_v2
-RUN npm install && npm run build
-
 # Expose the port
 EXPOSE 4173
 

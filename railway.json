@@ -18,13 +18,6 @@
         "context": ".",
         "dockerfile": "Dockerfile"
       }
-    },
-    {
-      "name": "portfolio_v2",
-      "build": {
-        "context": "./portfolio_v2",
-        "dockerfile": "Dockerfile"
-      }
     }
   ]
 }
