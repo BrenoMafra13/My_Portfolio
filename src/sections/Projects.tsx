@@ -78,8 +78,32 @@ function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
   const [scrollProgress, setScrollProgress] = useState<number[]>(projects.map(() => 0))
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia('(max-width: 1024px), (hover: none) and (pointer: coarse)').matches
+  })
 
   useEffect(() => {
+    const media = window.matchMedia('(max-width: 1024px), (hover: none) and (pointer: coarse)')
+    const onChange = () => setIsMobile(media.matches)
+    onChange()
+
+    // Safari fallback for older MediaQueryList implementations
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', onChange)
+      return () => media.removeEventListener('change', onChange)
+    }
+
+    media.addListener(onChange)
+    return () => media.removeListener(onChange)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) {
+      setScrollProgress(projects.map(() => 1))
+      return
+    }
+
     const handleScroll = () => {
       if (!sectionRef.current) return
 
@@ -102,7 +126,7 @@ function Projects() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isMobile])
 
   const handleProjectClick = (project: Project) => {
     if (project.id === 5) {
@@ -134,20 +158,20 @@ function Projects() {
             const slideDirection = isEven ? -1 : 1
             
             // 3. Progressive scale: scale from 0.8 to 1
-            const scale = 0.8 + (progress * 0.2)
+            const scale = isMobile ? 1 : 0.8 + (progress * 0.2)
             
             // 5. More dynamic rotation: starts at 12deg, goes to 0
-            const rotate = (1 - progress) * 12 * slideDirection
+            const rotate = isMobile ? 0 : (1 - progress) * 12 * slideDirection
             
             // Main card transform
-            const translateX = (1 - progress) * 80 * slideDirection
-            const translateY = (1 - progress) * 40
+            const translateX = isMobile ? 0 : (1 - progress) * 80 * slideDirection
+            const translateY = isMobile ? 0 : (1 - progress) * 40
             
             // 4. 3D depth: perspective and translateZ
-            const perspective = 1000
-            const translateZ = (1 - progress) * 50
+            const perspective = isMobile ? 0 : 1000
+            const translateZ = isMobile ? 0 : (1 - progress) * 50
             
-            const opacity = progress
+            const opacity = isMobile ? 1 : Math.max(progress, 0.15)
             
             // 2. Glow effect intensity based on progress
             const glowIntensity = Math.sin(progress * Math.PI) * 0.6
@@ -157,9 +181,11 @@ function Projects() {
                 key={project.id}
                 className={`${index === 4 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}
                 style={{
-                  transform: `perspective(${perspective}px) translate(${translateX}px, ${translateY}px) rotate(${rotate}deg) scale(${scale}) translateZ(${-translateZ}px)`,
+                  transform: isMobile
+                    ? 'none'
+                    : `perspective(${perspective}px) translate(${translateX}px, ${translateY}px) rotate(${rotate}deg) scale(${scale}) translateZ(${-translateZ}px)`,
                   opacity: opacity,
-                  transition: 'transform 0.05s linear, opacity 0.05s linear',
+                  transition: isMobile ? 'none' : 'transform 0.05s linear, opacity 0.05s linear',
                 }}
               >
                 <div 
@@ -188,7 +214,9 @@ function Projects() {
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       style={{
                         // 1. Parallax: image moves at different speed
-                        transform: `translateY(${(1 - progress) * 20}px) scale(${1 + (1 - progress) * 0.1})`,
+                        transform: isMobile
+                          ? 'none'
+                          : `translateY(${(1 - progress) * 20}px) scale(${1 + (1 - progress) * 0.1})`,
                       }}
                     />
                     
