@@ -3,8 +3,6 @@ import { useState } from 'react';
 function About() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [selectedResume, setSelectedResume] = useState(false);
-
-  const openSheet = () => setIsSheetOpen(true);
   const closeSheet = () => setIsSheetOpen(false);
   const openResumeModal = () => setSelectedResume(true);
   const closeResumeModal = () => setSelectedResume(false);

@@ -25,13 +25,14 @@ function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible')
-          } else {
-            entry.target.classList.remove('reveal-visible')
+            // Keep sections visible after first reveal to avoid mobile threshold issues on tall blocks.
+            observer.unobserve(entry.target)
           }
         })
       },
       {
-        threshold: 0.2,
+        threshold: 0.01,
+        rootMargin: '0px 0px -10% 0px',
       },
     )
 
