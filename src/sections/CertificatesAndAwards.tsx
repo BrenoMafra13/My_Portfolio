@@ -6,6 +6,7 @@ type Certificate = {
   issuer: string
   date: string
   credentialUrl: string
+  credentialLabel?: string
   skills: string[]
   logoType?: 'harvard' | 'certificate' | 'java'
   expires?: string
@@ -40,6 +41,26 @@ function CertificatesAndAwards() {
       skills: ['Java', 'Spring Boot', 'REST APIs', 'PostgreSQL', 'Maven'],
       logoType: 'java',
     },
+    {
+      id: 'react-best-practices',
+      title: 'React Best Practices',
+      issuer: 'Pearson - LinkedIn Learning',
+      date: '2026',
+      credentialUrl: 'https://www.linkedin.com/learning/certificates/b3c602c0e05139d963eeed95dc00766d07865a6fca32fe48262acca7e2795e5c',
+      credentialLabel: 'View Certificate',
+      skills: ['React', 'Component Architecture', 'Performance'],
+      logoType: 'certificate',
+    },
+    {
+      id: 'beyond-pair-programming',
+      title: 'Beyond Pair Programming with AI',
+      issuer: 'LinkedIn Learning',
+      date: '2026',
+      credentialUrl: 'https://www.linkedin.com/learning/certificates/8f7c5119d934a6465a1d78424b0c05a2e8b5c2185dcbe66a3586c18dd2e8fa48?trk=share_certificate',
+      credentialLabel: 'View Certificate',
+      skills: ['Pair Programming', 'AI Collaboration', 'Engineering Workflow'],
+      logoType: 'certificate',
+    },
   ]
 
   const awards: Award[] = [
@@ -53,6 +74,7 @@ function CertificatesAndAwards() {
         { label: 'Winter 2024', url: '/winter2024.pdf' },
         { label: 'Fall 2024', url: '/fall2024.pdf' },
         { label: 'Winter 2025', url: '/winter2025.pdf' },
+        { label: 'Fall 2025', url: '/Fall2025.pdf' },
       ],
     },
   ]
@@ -104,7 +126,7 @@ function CertificatesAndAwards() {
             Certificates
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -117,7 +139,7 @@ function CertificatesAndAwards() {
                 {/* Card glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="relative z-10 p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-yellow-500/30 transition-colors duration-300">
+                <div className="relative z-10 h-full p-5 md:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-yellow-500/30 transition-colors duration-300 flex flex-col">
                   {/* Certificate icon */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center">
@@ -126,10 +148,21 @@ function CertificatesAndAwards() {
                     <span className="text-sm font-mono text-yellow-500/70">{cert.date}</span>
                   </div>
 
-                  <h4 className="font-display text-xl text-text mb-1 group-hover:text-yellow-400 transition-colors duration-300">
+                  <h4 className="font-display text-lg md:text-xl text-text mb-1 group-hover:text-yellow-400 transition-colors duration-300 leading-snug">
                     {cert.title}
                   </h4>
                   <p className="text-sm font-mono text-muted mb-4">{cert.issuer}</p>
+
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {cert.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-2 py-1 text-[11px] font-mono rounded-md bg-white/5 text-white/80 border border-white/10"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                   
                   {cert.expires && (
                     <p className="text-xs font-mono text-muted/60 mb-4">
@@ -141,12 +174,12 @@ function CertificatesAndAwards() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-500/10 text-yellow-500 text-sm font-mono hover:bg-yellow-500/20 transition-colors duration-300"
+                    className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-500/10 text-yellow-500 text-sm font-mono hover:bg-yellow-500/20 transition-colors duration-300"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
-                    Show Credential
+                    {cert.credentialLabel ?? 'Show Credential'}
                   </a>
                 </div>
 
