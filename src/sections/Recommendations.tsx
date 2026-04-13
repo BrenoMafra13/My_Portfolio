@@ -17,7 +17,7 @@ type Recommendation = {
 function Recommendations() {
   const [showEmail, setShowEmail] = useState<string | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const pageSize = 2
+  const [isMobile, setIsMobile] = useState(false)
 
   const recommendations: Recommendation[] = [
     {
@@ -71,9 +71,22 @@ function Recommendations() {
   ]
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const pageSize = isMobile ? 1 : 2
+
+  useEffect(() => {
     const intervalId = window.setInterval(() => {
       setActiveIndex((prev) => (prev + pageSize) % recommendations.length)
-    }, 6000)
+    }, 9000)
 
     return () => window.clearInterval(intervalId)
   }, [recommendations.length, pageSize])
@@ -90,10 +103,9 @@ function Recommendations() {
     setActiveIndex((prev) => (prev - pageSize + recommendations.length) % recommendations.length)
   }
 
-  const visibleRecommendations = [
-    recommendations[activeIndex],
-    recommendations[(activeIndex + 1) % recommendations.length],
-  ]
+  const visibleRecommendations = isMobile
+    ? [recommendations[activeIndex]]
+    : [recommendations[activeIndex], recommendations[(activeIndex + 1) % recommendations.length]]
 
   const pageCount = Math.ceil(recommendations.length / pageSize)
   const currentPage = Math.floor(activeIndex / pageSize)
