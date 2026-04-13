@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import heroPhoto from '../assets/my_photo.jpeg'
 import { stats } from '../data/stats'
 
 function Hero() {
@@ -111,7 +110,7 @@ function Hero() {
         <div className="absolute -right-4 -top-4 h-full w-full rounded-[40px] border border-blue-500" />
         <div className="relative overflow-hidden rounded-[40px] border border-blue-500 bg-white/5 backdrop-blur-xl p-4 shadow-soft">
           <img
-            src={heroPhoto}
+            src="/avatarPointing.png"
             alt="Breno Lopes Mafra"
             className="h-[320px] md:h-[420px] w-full rounded-[32px] object-cover object-top"
           />

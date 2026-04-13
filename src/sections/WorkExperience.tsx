@@ -42,7 +42,6 @@ function WorkExperience() {
     },
     {
       company: 'CENIBRA',
-      companyLine2: 'Celulose Nipo Brasileira S.A.',
       position: 'Junior Software Developer',
       period: 'Jan 2023 – Apr 2024',
       location: 'Brazil (Remote)',
@@ -81,7 +80,7 @@ function WorkExperience() {
       <div className="relative z-10">
         <div className="flex flex-col gap-3">
           <p className="text-sm uppercase tracking-[0.28em] text-accent-strong font-mono">{"<Experience />"}</p>
-          <h2 className="font-display text-2xl md:text-2xl">Professional journey in software development:</h2>
+          <h2 className="font-display text-2xl md:text-2xl text-white">Professional journey in software development:</h2>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -97,10 +96,10 @@ function WorkExperience() {
               {/* Background glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative z-10 h-full min-h-[760px] p-6 md:p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden">
+                  <div className="relative z-10 h-full min-h-0 p-5 md:p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden">
                   {/* Background logo - inside the card */}
                   {exp.logo && (
-                    <div className="absolute -top-21 -right-2 w-80 h-80 md:w-96 md:h-96 lg:w-[45rem] lg:h-[25rem] pointer-events-none opacity-50 pr-8">
+                    <div className="absolute -top-8 -right-8 w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[45rem] lg:h-[25rem] pointer-events-none opacity-30 md:opacity-50 pr-0 md:pr-8">
                       <motion.img
                         src={exp.logo}
                         alt={exp.company}
@@ -120,13 +119,13 @@ function WorkExperience() {
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <span className="inline-block text-xl md:text-2xl lg:text-3xl font-mono text-accent font-bold mr-2">
+                        <span className="inline-block text-lg sm:text-xl md:text-2xl lg:text-3xl font-mono text-white font-bold mr-2">
                         {exp.period}
                       </span>
                     </motion.div>
 
                     <motion.h3
-                      className="font-display text-3xl md:text-4xl text-text mb-2 group-hover:text-accent transition-colors duration-300 leading-tight"
+                        className="font-display text-2xl sm:text-3xl md:text-4xl text-white mb-2 group-hover:text-accent transition-colors duration-300 leading-tight"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.2 }}
@@ -150,13 +149,13 @@ function WorkExperience() {
                     >
                       {exp.link ? (
                         <a href={exp.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent-strong transition-colors duration-300">
-                          <span className="text-lg md:text-xl lg:text-2xl font-mono text-accent-strong group-hover:text-muted/80 transition-colors duration-300">
+                            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-mono text-white group-hover:text-white/90 transition-colors duration-300">
                             {exp.company}
                           </span>
                           {exp.companyLine2 && (
                             <>
                               <br />
-                              <span className="text-base md:text-lg lg:text-xl font-mono text-muted group-hover:text-muted/80 transition-colors duration-300">
+                                <span className="text-sm sm:text-base md:text-lg lg:text-xl font-mono text-white/80 group-hover:text-white/70 transition-colors duration-300">
                                 {exp.companyLine2}
                               </span>
                             </>
@@ -164,13 +163,13 @@ function WorkExperience() {
                         </a>
                       ) : (
                         <>
-                          <span className="text-lg md:text-xl lg:text-2xl font-mono text-accent-strong group-hover:text-muted/80 transition-colors duration-300">
+                            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-mono text-white group-hover:text-white/90 transition-colors duration-300">
                             {exp.company}
                           </span>
                           {exp.companyLine2 && (
                             <>
                               <br />
-                              <span className="text-base md:text-lg lg:text-xl font-mono text-muted group-hover:text-muted/80 transition-colors duration-300">
+                                <span className="text-sm sm:text-base md:text-lg lg:text-xl font-mono text-white/80 group-hover:text-white/70 transition-colors duration-300">
                                 {exp.companyLine2}
                               </span>
                             </>
@@ -179,26 +178,29 @@ function WorkExperience() {
                       )}
                     </motion.div>
 
-                    <motion.div
-                      className="mb-6"
+                      <motion.div
+                        className="mb-4 md:mb-5"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                       viewport={{ once: true }}
                     >
-                      <span className="text-base md:text-lg lg:text-xl font-mono text-muted group-hover:text-muted/70 transition-colors duration-300">
+                        <span
+                          className="text-sm sm:text-base md:text-lg lg:text-xl font-mono text-white/85 group-hover:text-white/70 transition-colors duration-300"
+                          style={{ color: '#ffffff' }}
+                        >
                         {exp.location}
                       </span>
                     </motion.div>
 
-                    <motion.div
-                      className="mt-auto"
+                      <motion.div
+                        className="mt-0"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
                       viewport={{ once: true }}
                     >
-                      <div className="space-y-6">
+                      <div className="space-y-4 md:space-y-6">
                         {exp.highlights.map((highlight, highlightIndex) => (
                           <motion.div
                             key={highlightIndex}
