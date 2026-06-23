@@ -4,8 +4,10 @@ import myPhoto from '../assets/my_photo.jpeg'
 
 function Hero() {
   const [text, setText] = useState('')
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0)
   const fullText = "I'm Breno, Full-stack Software Developer"
   const splitIndex = fullText.indexOf(',')
+  const photos = [myPhoto, '/photo2.jpeg']
 
   useEffect(() => {
     let index = 0
@@ -19,6 +21,14 @@ function Hero() {
     }, 120)
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActivePhotoIndex((currentIndex) => (currentIndex + 1) % photos.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [photos.length])
 
   const typedPart = text
   const beforeComma = typedPart.slice(0, splitIndex + 1)
@@ -110,11 +120,18 @@ function Hero() {
       <div className="relative">
         <div className="absolute -right-4 -top-4 h-full w-full rounded-[40px] border border-blue-500" />
         <div className="relative overflow-hidden rounded-[40px] border border-blue-500 bg-white/5 backdrop-blur-xl p-4 shadow-soft">
-          <img
-            src={myPhoto}
-            alt="Breno Lopes Mafra"
-            className="h-[320px] md:h-[420px] w-full rounded-[32px] object-cover object-top"
-          />
+          <div className="relative h-[320px] overflow-hidden rounded-[32px] md:h-[420px]">
+            {photos.map((photo, index) => (
+              <img
+                key={photo}
+                src={photo}
+                alt={`Breno Lopes Mafra ${index + 1}`}
+                className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-700 ease-in-out ${
+                  index === activePhotoIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
